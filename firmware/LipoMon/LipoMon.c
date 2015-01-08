@@ -1,7 +1,3 @@
-/*
- * LipoMon.c
- */ 
-	
 #include "BoardDefines.h"
 #include "Uart.h"
 
