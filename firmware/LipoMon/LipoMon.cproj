@@ -5,7 +5,7 @@
     <ProjectVersion>6.1</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
     <ProjectGuid>{9d4b68f2-8194-4180-8cc2-34a9f5a0ea9a}</ProjectGuid>
-    <avrdevice>ATmega88PA</avrdevice>
+    <avrdevice>ATmega16A</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
     <Language>C</Language>
@@ -37,7 +37,7 @@
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
-    <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
+    <avrtool>com.atmel.avrdbg.tool.ispmk2</avrtool>
     <com_atmel_avrdbg_tool_simulator>
       <ToolOptions xmlns="">
         <InterfaceProperties>
@@ -51,6 +51,19 @@
       </ToolNumber>
       <ToolName xmlns="">Simulator</ToolName>
     </com_atmel_avrdbg_tool_simulator>
+    <avrtoolinterface>ISP</avrtoolinterface>
+    <com_atmel_avrdbg_tool_ispmk2>
+      <ToolOptions>
+        <InterfaceProperties>
+          <JtagEnableExtResetOnStartSession>false</JtagEnableExtResetOnStartSession>
+          <IspClock>503260</IspClock>
+        </InterfaceProperties>
+        <InterfaceName>ISP</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.ispmk2</ToolType>
+      <ToolNumber>000200212345</ToolNumber>
+      <ToolName>AVRISP mkII</ToolName>
+    </com_atmel_avrdbg_tool_ispmk2>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -110,13 +123,31 @@
     <Compile Include="BoardDefines.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Devices\ATmega16A.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Devices\ATmega88PA.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lib\Adc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lib\Adc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lib\SevenSegment.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lib\SevenSegment.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lib\Uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Lib\Uart.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="LipoMon.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Uart.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Uart.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
@@ -124,6 +155,10 @@
     <None Include=".gitignore">
       <SubType>compile</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Devices" />
+    <Folder Include="Lib" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

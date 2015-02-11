@@ -1,3 +1,8 @@
+/**
+ * Author: Michal Witas
+ * Version: 1.0
+ **/
+
 #ifndef UART_H_
 #define UART_H_
 

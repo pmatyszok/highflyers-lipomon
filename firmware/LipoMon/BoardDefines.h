@@ -1,24 +1,20 @@
+/**
+ * Author: Michal Witas
+ * Version: 1.0
+ **/
+
 #ifndef BOARDDEFINES_H_
 #define BOARDDEFINES_H_
 
-#define F_CPU 1000000UL  // 1 MHz
-#define USART_BAUDRATE 9600
+#define F_CPU 8000000UL  // 1 MHz
+#define BAUD 9600
+#define USART_BAUDRATE BAUD
 
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <util/setbaud.h>
 
-#define UBRRL UBRR0L
-#define UBRRH UBRR0H
-#define UCSRB UCSR0B
-#define TXEN TXEN0
-#define RXEN RXEN0
-#define RXCIE RXCIE0
-#define UCSRA UCSR0A
-#define UDRE UDRE0
-#define UDR UDR0
-#define UCSRA UCSR0A
-#define RXC RXC0
+#include "Devices/ATmega16A.h"
 
 #endif /* BOARDDEFINES_H_ */

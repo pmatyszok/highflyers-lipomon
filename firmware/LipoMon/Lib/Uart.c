@@ -1,7 +1,13 @@
-#include "BoardDefines.h"
+/**
+ * Author: Michal Witas
+ * Version: 1.0
+ **/
+
+#include "../BoardDefines.h"
 #include "Uart.h"
 
-void USART_Init(void){
+void USART_Init(void)
+{
 	// Set baud rate
 	UBRRL = BAUD_PRESCALE;// Load lower 8-bits into the low byte of the UBRR register
 	UBRRH = (BAUD_PRESCALE >> 8); 
@@ -14,7 +20,8 @@ void USART_Init(void){
 	UCSRB = ((1<<TXEN)|(1<<RXEN) | (1<<RXCIE));
 }
 
-void USART_SendByte(uint8_t u8Data){
+void USART_SendByte(uint8_t u8Data)
+{
 	// Wait until last byte has been transmitted
 	while((UCSRA &(1<<UDRE)) == 0);
 
@@ -23,7 +30,8 @@ void USART_SendByte(uint8_t u8Data){
 }
 
 // Wait until a byte has been received and return received data 
-uint8_t USART_ReceiveByte(){
+uint8_t USART_ReceiveByte()
+{
 	while((UCSRA &(1<<RXC)) == 0);
 	return UDR;
 }
