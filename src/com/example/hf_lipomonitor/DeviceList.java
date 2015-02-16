@@ -15,7 +15,7 @@
  */
 
 
-package app.akexorcist.bluetotohspp.library;
+package com.example.hf_lipomonitor;
 
 import java.util.Set;
 
@@ -40,6 +40,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import app.akexorcist.bluetotohspp.library.BluetoothState;
 
 @SuppressLint("NewApi")
 public class DeviceList extends Activity {
@@ -52,6 +53,7 @@ public class DeviceList extends Activity {
     private ArrayAdapter<String> mPairedDevicesArrayAdapter;
     private Set<BluetoothDevice> pairedDevices;
     private Button scanButton;
+ 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

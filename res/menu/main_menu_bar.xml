@@ -3,7 +3,7 @@
      
      
      <item android:id="@+id/btSearch"
-        	android:icon="@drawable/ic_launcher"
+        	android:icon="@drawable/bluetooth"
         	android:title="@string/action_search"
         	android:showAsAction="ifRoom" />
      
