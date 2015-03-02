@@ -5,7 +5,7 @@
     <ProjectVersion>6.1</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
     <ProjectGuid>{9d4b68f2-8194-4180-8cc2-34a9f5a0ea9a}</ProjectGuid>
-    <avrdevice>ATmega16A</avrdevice>
+    <avrdevice>ATmega32A</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
     <Language>C</Language>
@@ -126,6 +126,9 @@
     <Compile Include="Devices\ATmega16A.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Devices\ATmega32A.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Devices\ATmega88PA.h">
       <SubType>compile</SubType>
     </Compile>
@@ -135,10 +138,10 @@
     <Compile Include="Lib\Adc.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Lib\SevenSegment.c">
+    <Compile Include="Lib\Lipomon.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Lib\SevenSegment.h">
+    <Compile Include="Lib\Lipomon.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Lib\Uart.c">
@@ -147,7 +150,7 @@
     <Compile Include="Lib\Uart.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="LipoMon.c">
+    <Compile Include="Main.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

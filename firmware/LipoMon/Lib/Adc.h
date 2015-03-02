@@ -6,12 +6,22 @@
 #ifndef ADC_H_
 #define ADC_H_
 
-#define ADCINPUT	PORTA0
+#include "../BoardDefines.h"
 
-#define ADC_INCREMENT	25
-#define ADC_DIVIDER		10000L
+// V_ref = 2.56V
+#define ADC_INCREMENT 25			// round(V_ref/1024 * ADC_MULTIPLIER)
+#define ADC_MULTIPLIER 10000L
 
+/**
+ * Initializes ADC unit.
+ */
 extern void AdcInit();
-extern uint16_t AdcTakeMeasure(uint8_t chanel);
+
+/**
+ * Returns measurement taken from ADC.
+ * @param channel Channel from which measurement should be taken.
+ * @return Measurement taken from ADC.
+ */
+extern uint16_t AdcTakeMeasure(uint8_t channel);
 
 #endif /* ADC_H_ */

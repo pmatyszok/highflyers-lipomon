@@ -6,7 +6,7 @@
 #include "../BoardDefines.h"
 #include "Uart.h"
 
-void USART_Init(void)
+void UartInit(void)
 {
 	// Set baud rate
 	UBRRL = BAUD_PRESCALE;// Load lower 8-bits into the low byte of the UBRR register
@@ -17,10 +17,11 @@ void USART_Init(void)
 	to change use UCSRC, see AVR datasheet*/ 
 
 	// Enable receiver and transmitter and receive complete interrupt 
-	UCSRB = ((1<<TXEN)|(1<<RXEN) | (1<<RXCIE));
+	UCSRB = ((1<<TXEN)|(1<<RXEN));
+	UCSRC = (1<<URSEL)|(3<<UCSZ0);
 }
 
-void USART_SendByte(uint8_t u8Data)
+void UartSendByte(uint8_t u8Data)
 {
 	// Wait until last byte has been transmitted
 	while((UCSRA &(1<<UDRE)) == 0);
@@ -29,8 +30,13 @@ void USART_SendByte(uint8_t u8Data)
 	UDR = u8Data;
 }
 
+void UartSendIntAsAscii(uint8_t data)
+{
+	UartSendByte(data + 48);
+}
+
 // Wait until a byte has been received and return received data 
-uint8_t USART_ReceiveByte()
+uint8_t UartReceiveByte()
 {
 	while((UCSRA &(1<<RXC)) == 0);
 	return UDR;

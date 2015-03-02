@@ -6,6 +6,9 @@
 #include "../BoardDefines.h"
 #include "Adc.h"
 
+/**
+ * Initializes ADC module
+ */
 void AdcInit() 
 {
 	// Direction of the port
@@ -24,11 +27,15 @@ void AdcInit()
 	ADCSRA |= (1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0);	
 }
 
+/**
+ * Takes measurement from ADC on given channel.
+ * @param channel Channel to take measurement from.
+ * @returns Measurement taken from ADC.
+ */
 uint16_t AdcTakeMeasure(uint8_t channel) 
 {
-	ADMUX &= ~((1<<ADC0_BIT)|(1<<ADC1_BIT)|(1<<ADC2_BIT));	// Clear actual source
-	ADMUX = (ADMUX&0xF4)|channel;	// Set source to channel
-	ADCSRA |= (1<<ADSC);		// Start measurement
-	while(ADCSRA & (1<<ADSC));	// Wait until task ends
+	ADMUX = (ADMUX&0xF4)|channel;	// Set source to "channel"
+	ADCSRA |= (1<<ADSC);			// Start measurement
+	while(ADCSRA & (1<<ADSC));		// Wait until task ends
 	return ADCW;
 }

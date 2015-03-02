@@ -6,6 +6,11 @@
 #ifndef ATMEGA88PA_H_
 #define ATMEGA88PA_H_
 
+#define F_CPU 1000000UL
+
+#define ADCINPUT PORTA0
+
+// UART ports redefinition
 #define UBRRL UBRR0L
 #define UBRRH UBRR0H
 #define UCSRB UCSR0B
