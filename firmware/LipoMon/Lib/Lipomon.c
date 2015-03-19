@@ -20,7 +20,7 @@ Voltage ConvertAdcToVoltage(uint16_t adcMeasurement)
 
 void SendAdcResultViaUsart(uint8_t channel, uint16_t measurement)
 {
-	Voltage result = ConvertAdcToVoltage(measurement);
+	//Voltage result = ConvertAdcToVoltage(measurement);
 	
 	// Send channel number (zero based)
 	UartSendByte('c');
@@ -28,12 +28,14 @@ void SendAdcResultViaUsart(uint8_t channel, uint16_t measurement)
 	
 	// Send value as ASCII
 	UartSendByte('v');
-	UartSendIntAsAscii(result.d1);
+	/*UartSendIntAsAscii(result.d1);
 	UartSendIntAsAscii(result.d_10);
 	UartSendIntAsAscii(result.d_100);
-	UartSendIntAsAscii(result.d_1000);
+	UartSendIntAsAscii(result.d_1000);*/
+	
+	UartSendIntAsAscii((measurement >> 8) & 0xff);		// High part
+	UartSendIntAsAscii((measurement >> 0) & 0xff);		// Low part
 	
 	// Send end of line
-	UartSendByte('\r');
 	UartSendByte('\n');
 }
