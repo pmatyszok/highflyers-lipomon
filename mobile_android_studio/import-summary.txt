@@ -1,0 +1,165 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .gitignore
+* LICENSE
+* README.md
+* board\
+* board\HF-Lipomon-pcb.SchDoc
+* board\info.txt
+* firmware\
+* firmware\LipoMon.atsln
+* firmware\LipoMon.atsuo
+* firmware\LipoMon\
+* firmware\LipoMon\.gitignore
+* firmware\LipoMon\BoardDefines.h
+* firmware\LipoMon\Debug\
+* firmware\LipoMon\Debug\Lib\
+* firmware\LipoMon\Debug\Lib\Adc.d
+* firmware\LipoMon\Debug\Lib\Adc.o
+* firmware\LipoMon\Debug\Lib\Lipomon.d
+* firmware\LipoMon\Debug\Lib\Lipomon.o
+* firmware\LipoMon\Debug\Lib\Uart.d
+* firmware\LipoMon\Debug\Lib\Uart.o
+* firmware\LipoMon\Debug\LipoMon.d
+* firmware\LipoMon\Debug\LipoMon.eep
+* firmware\LipoMon\Debug\LipoMon.elf
+* firmware\LipoMon\Debug\LipoMon.hex
+* firmware\LipoMon\Debug\LipoMon.lss
+* firmware\LipoMon\Debug\LipoMon.map
+* firmware\LipoMon\Debug\LipoMon.o
+* firmware\LipoMon\Debug\LipoMon.srec
+* firmware\LipoMon\Debug\Main.d
+* firmware\LipoMon\Debug\Main.o
+* firmware\LipoMon\Debug\Makefile
+* firmware\LipoMon\Debug\makedep.mk
+* firmware\LipoMon\Devices\
+* firmware\LipoMon\Devices\ATmega16A.h
+* firmware\LipoMon\Devices\ATmega32A.h
+* firmware\LipoMon\Devices\ATmega88PA.h
+* firmware\LipoMon\Lib\
+* firmware\LipoMon\Lib\Adc.c
+* firmware\LipoMon\Lib\Adc.h
+* firmware\LipoMon\Lib\Lipomon.c
+* firmware\LipoMon\Lib\Lipomon.h
+* firmware\LipoMon\Lib\SevenSegment.c
+* firmware\LipoMon\Lib\SevenSegment.h
+* firmware\LipoMon\Lib\Uart.c
+* firmware\LipoMon\Lib\Uart.h
+* firmware\LipoMon\LipoMon.cproj
+* firmware\LipoMon\Main.c
+* firmware\info.txt
+* ic_launcher-web.png
+* mobile_android_studio\
+* mobile_android_studio\.idea\
+* mobile_android_studio\.idea\.name
+* mobile_android_studio\.idea\compiler.xml
+* mobile_android_studio\.idea\copyright\
+* mobile_android_studio\.idea\copyright\profiles_settings.xml
+* mobile_android_studio\.idea\encodings.xml
+* mobile_android_studio\.idea\misc.xml
+* mobile_android_studio\.idea\modules.xml
+* mobile_android_studio\.idea\scopes\
+* mobile_android_studio\.idea\scopes\scope_settings.xml
+* mobile_android_studio\.idea\vcs.xml
+* mobile_android_studio\.idea\workspace.xml
+* mobile_android_studio\app\
+* mobile_android_studio\app\build.gradle
+* mobile_android_studio\app\src\
+* mobile_android_studio\app\src\main\
+* mobile_android_studio\app\src\main\AndroidManifest.xml
+* mobile_android_studio\app\src\main\java\
+* mobile_android_studio\app\src\main\java\app\
+* mobile_android_studio\app\src\main\java\app\akexorcist\
+* mobile_android_studio\app\src\main\java\app\akexorcist\bluetotohspp\
+* mobile_android_studio\app\src\main\java\app\akexorcist\bluetotohspp\library\
+* mobile_android_studio\app\src\main\java\app\akexorcist\bluetotohspp\library\BluetoothSPP.java
+* mobile_android_studio\app\src\main\java\app\akexorcist\bluetotohspp\library\BluetoothService.java
+* mobile_android_studio\app\src\main\java\app\akexorcist\bluetotohspp\library\BluetoothState.java
+* mobile_android_studio\app\src\main\java\com\
+* mobile_android_studio\app\src\main\java\com\example\
+* mobile_android_studio\app\src\main\java\com\example\hf_lipomonitor\
+* mobile_android_studio\app\src\main\java\com\example\hf_lipomonitor\DeviceList.java
+* mobile_android_studio\app\src\main\java\com\example\hf_lipomonitor\MainActivity.java
+* mobile_android_studio\app\src\main\res\
+* mobile_android_studio\app\src\main\res\drawable-hdpi\
+* mobile_android_studio\app\src\main\res\drawable-hdpi\bluetooth.png
+* mobile_android_studio\app\src\main\res\drawable-hdpi\highflyers.png
+* mobile_android_studio\app\src\main\res\drawable-mdpi\
+* mobile_android_studio\app\src\main\res\drawable-mdpi\bluetooth.png
+* mobile_android_studio\app\src\main\res\drawable-mdpi\highflyers.png
+* mobile_android_studio\app\src\main\res\drawable-xhdpi\
+* mobile_android_studio\app\src\main\res\drawable-xhdpi\bluetooth.png
+* mobile_android_studio\app\src\main\res\drawable-xhdpi\highflyers.png
+* mobile_android_studio\app\src\main\res\drawable-xxhdpi\
+* mobile_android_studio\app\src\main\res\drawable-xxhdpi\bluetooth.png
+* mobile_android_studio\app\src\main\res\drawable-xxhdpi\highflyers.png
+* mobile_android_studio\app\src\main\res\layout\
+* mobile_android_studio\app\src\main\res\layout\activity_main.xml
+* mobile_android_studio\app\src\main\res\layout\device_list.xml
+* mobile_android_studio\app\src\main\res\layout\device_name.xml
+* mobile_android_studio\app\src\main\res\menu\
+* mobile_android_studio\app\src\main\res\menu\main.xml
+* mobile_android_studio\app\src\main\res\menu\main_menu_bar.xml
+* mobile_android_studio\app\src\main\res\values-v11\
+* mobile_android_studio\app\src\main\res\values-v11\styles.xml
+* mobile_android_studio\app\src\main\res\values-v14\
+* mobile_android_studio\app\src\main\res\values-v14\styles.xml
+* mobile_android_studio\app\src\main\res\values-w820dp\
+* mobile_android_studio\app\src\main\res\values-w820dp\dimens.xml
+* mobile_android_studio\app\src\main\res\values\
+* mobile_android_studio\app\src\main\res\values\dimens.xml
+* mobile_android_studio\app\src\main\res\values\strings.xml
+* mobile_android_studio\app\src\main\res\values\styles.xml
+* mobile_android_studio\build.gradle
+* mobile_android_studio\gradle\
+* mobile_android_studio\gradle\wrapper\
+* mobile_android_studio\gradle\wrapper\gradle-wrapper.jar
+* mobile_android_studio\gradle\wrapper\gradle-wrapper.properties
+* mobile_android_studio\gradlew
+* mobile_android_studio\gradlew.bat
+* mobile_android_studio\local.properties
+* mobile_android_studio\settings.gradle
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:21.0.3
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app\src\main\AndroidManifest.xml
+* res\ => app\src\main\res\
+* src\ => app\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

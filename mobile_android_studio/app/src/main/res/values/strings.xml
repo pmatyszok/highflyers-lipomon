@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lipo Monitor</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Find bluetooth devices</string>
+    <string name="devices_connected">Devices connected successfully</string>
+    <string name="devices_disconnected">Devices disconnected</string>
+    <string name="connection_failed">Connection failed</string>
+    <string name="bluetooth_not_enabled">Bluetooth was not enabled</string>
+    <string name="lbl_cell_1">Cell 1</string>
+    <string name="lbl_cell_2">Cell 2</string>
+    <string name="lbl_cell_3">Cell 3</string>
+    <string name="lbl_cell_default_value">[Not known yet]</string>
+
+</resources>
