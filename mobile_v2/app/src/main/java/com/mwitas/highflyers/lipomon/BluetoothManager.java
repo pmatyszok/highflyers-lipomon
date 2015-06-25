@@ -4,11 +4,11 @@ import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.os.Handler;
-import android.util.Log;
-import android.widget.Toast;
 
+import com.simonguest.btxfr.ClientThread;
 import com.simonguest.btxfr.ServerThread;
 
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -21,25 +21,41 @@ public class BluetoothManager extends Application {
     private static String TAG = "HF/LipoMon/BTmgr";
 
     protected static BluetoothAdapter adapter;
-    protected static Set<BluetoothDevice> pairedDevices;
     protected static Handler serverHandler;
+    protected static Handler clientHandler;
     protected static ServerThread serverThread;
+    protected static ClientThread clientThread;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
+        try {
+            init();
+        } catch (IOException ex) {
+            // Do nothing
+        }
+    }
+
+    private static void init() throws IOException
+    {
         adapter = BluetoothAdapter.getDefaultAdapter();
         if (adapter != null) {
-            if (adapter.isEnabled()) {
-                pairedDevices = adapter.getBondedDevices();
-            } else {
-                Toast.makeText(this, "Bluetooth disabled", Toast.LENGTH_LONG).show();
-                Log.e(TAG, "Bluetooth is not enabled");
+            if (!adapter.isEnabled()) {
+                throw new IOException("Bluetooth is disabled");
             }
         } else {
-            Toast.makeText(this, "Bluetooth adapter not found", Toast.LENGTH_LONG).show();
-            Log.d(TAG, "Bluetooth adapter not found");
+            throw new IOException("Bluetooth adapter not found");
         }
+    }
+
+    public void RefreshManager() throws IOException
+    {
+        init();
+    }
+
+    public static Set<BluetoothDevice> getPairedDevices() throws IOException {
+        init();
+        return adapter.getBondedDevices();
     }
 }

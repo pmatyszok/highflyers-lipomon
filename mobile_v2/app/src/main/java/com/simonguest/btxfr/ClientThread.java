@@ -13,7 +13,7 @@ import java.io.OutputStream;
 import java.util.UUID;
 
 public class ClientThread extends Thread {
-    private final String TAG = "android-btxfr/ClientThread";
+    private final String TAG = "btxfr/ClientThread";
     private final BluetoothSocket socket;
     private final Handler handler;
     public Handler incomingHandler;
@@ -27,6 +27,8 @@ public class ClientThread extends Thread {
         } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
+
+        Log.v(TAG, "Socket created");
         this.socket = tempSocket;
     }
 
