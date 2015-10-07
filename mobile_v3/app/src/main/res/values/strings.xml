@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">High Flyers LipoMonitor</string>
+    <string name="lbl_cell_no">Cell no. </string>
+    <string name="lbl_voltage_suffix"> V</string>
+    <string name="txt_bt_not_supported">Bluetooth not supported</string>
+    <string name="txt_invalid_bt_state_title">Invalid Bluetooth state</string>
+    <string name="lbl_error_occurred">Error occurred!</string>
+    <string name="btn_handle_error">Press to close</string>
+    <string name="txt_cannot_run_with_bt_disabled">Application cannot run with Bluetooth disabled</string>
+    <string name="lbl_connected_to">Connected to:</string>
+</resources>

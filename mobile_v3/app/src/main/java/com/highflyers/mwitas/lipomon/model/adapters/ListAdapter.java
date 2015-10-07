@@ -74,13 +74,13 @@ public class ListAdapter extends BaseAdapter {
             tvTitle = (TextView) Helper.getView(vi, R.id.tvTitle, "TextView title");
             tvValue = (TextView) Helper.getView(vi, R.id.tvValue, "TextView value");
         } catch (ViewNotFoundException e) {
-            MainActivity.handleError(e.getMessage());
+            MainActivity.handleError(context, e.getMessage());
         }
 
         ICellData item = (ICellData) getItem(position);
 
         if (item.equals(CellData.INVALID_CELL)) {
-            MainActivity.handleError("Invalid cell requested");
+            MainActivity.handleError(context, "Invalid cell requested");
         } else {
             ListEntry entry = new ListEntry((ICellData) getItem(position));
 
@@ -91,6 +91,10 @@ public class ListAdapter extends BaseAdapter {
         }
 
         return vi;
+    }
+
+    public void refreshList() {
+        notifyDataSetChanged();
     }
 
     public void updateListAdapter(ICellDataSource dataSource) {

@@ -50,11 +50,7 @@ public class CellDataMock implements ICellDataSource {
 
     @Override
     public int getCellsCount() {
-        if (cells == null) {
-            return 0;
-        } else {
-            return cells.size();
-        }
+        return (cells == null) ? 0 : cells.size();
     }
 
     @Override
