@@ -8,4 +8,6 @@
     <string name="btn_handle_error">Press to close</string>
     <string name="txt_cannot_run_with_bt_disabled">Application cannot run with Bluetooth disabled</string>
     <string name="lbl_connected_to">Connected to:</string>
+    <string name="txt_unable_to_get_inputstream">Unable to get input stream</string>
+    <string name="txt_unable_to_connect_to_device">Unable to connect to selected device</string>
 </resources>

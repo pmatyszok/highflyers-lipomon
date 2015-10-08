@@ -18,8 +18,6 @@ public class DeviceData {
     public static final DeviceData UNKNOWN_ERROR = new DeviceData("Unknown error occurred",
             DeviceData.ZERO_ADDRESS);
 
-
-
     public DeviceData(String spinnerText, String address) {
         this.spinnerText = spinnerText;
         this.address = address;

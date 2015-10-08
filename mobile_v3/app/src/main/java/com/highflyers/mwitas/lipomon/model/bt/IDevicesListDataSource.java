@@ -8,6 +8,6 @@ import java.util.List;
  * @author Michał Witas
  * @version 1.0
  */
-public interface IDevicesDataSource {
+public interface IDevicesListDataSource {
     List<DeviceData> getList();
 }

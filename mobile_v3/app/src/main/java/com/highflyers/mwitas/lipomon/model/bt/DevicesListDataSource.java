@@ -14,11 +14,11 @@ import java.util.Set;
  * @author Michał Witas
  * @version 1.0
  */
-public class DevicesDataSource implements IDevicesDataSource {
+public class DevicesListDataSource implements IDevicesListDataSource {
 
     private BtManager btManager = null;
 
-    public DevicesDataSource(BtManager btManager) {
+    public DevicesListDataSource(BtManager btManager) {
         this.btManager = btManager;
     }
 
