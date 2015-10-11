@@ -79,16 +79,16 @@ public class ListAdapter extends BaseAdapter {
 
         ICellData item = (ICellData) getItem(position);
 
-        if (item.equals(CellData.INVALID_CELL)) {
+        /*if (item.equals(CellData.INVALID_CELL)) {
             MainActivity.handleError(context, "Invalid cell requested");
-        } else {
+        } else {*/
             ListEntry entry = new ListEntry((ICellData) getItem(position));
 
             if (tvTitle != null && tvValue != null) {
                 tvTitle.setText(entry.title);
                 tvValue.setText(entry.value);
             }
-        }
+        //}
 
         return vi;
     }
@@ -108,7 +108,7 @@ public class ListAdapter extends BaseAdapter {
 
         public ListEntry(ICellData data) {
             title = context.getString(R.string.lbl_cell_no) +  data.getId().toString();
-            value = data.getVoltage().toString() + context.getString(R.string.lbl_voltage_suffix);
+            value = String.format("%.4f", data.getVoltage()) + context.getString(R.string.lbl_voltage_suffix);
         }
     }
 }

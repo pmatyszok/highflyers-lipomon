@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void onDeviceSelected(DeviceData selectedItem) {
         if (!activityStateFlags.justStarted()) {
+            btManager.closeConnection();
             try {
                 if (!selectedItem.getAddress().equals(DeviceData.ZERO_ADDRESS)) {
                     if (!btManager.connectToDevice(selectedItem.getAddress())) {

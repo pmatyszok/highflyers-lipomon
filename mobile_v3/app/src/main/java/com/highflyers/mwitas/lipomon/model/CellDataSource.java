@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * TODO - description
@@ -26,6 +27,8 @@ public class CellDataSource implements ICellDataSource {
     private BtHandler btHandler = null;
     private Handler msgHandler = null;
 
+    private static Pattern regex = Pattern.compile("\\r?\\n");
+
 
     public CellDataSource(BtManager btManager, Handler handler) throws InputStreamException {
         try {
@@ -37,6 +40,8 @@ public class CellDataSource implements ICellDataSource {
             } else {
                 throw new InputStreamException();
             }
+
+            cells = new ArrayList<>(6);
 
         } catch (BtInvalidStateException e) {
             cells.add(CellData.INVALID_CELL);
@@ -51,7 +56,11 @@ public class CellDataSource implements ICellDataSource {
 
     @Override
     public ICellData getCell(int cellId) {
-        return cells.get(cellId);
+        if (cellId > getCellsCount()) {
+            return CellData.INVALID_CELL;
+        } else {
+            return cells.get(cellId);
+        }
     }
 
     @Override
@@ -74,10 +83,18 @@ public class CellDataSource implements ICellDataSource {
         }
     }
 
+    private ICellData getCellWithAdd(int cellId) {
+        for(int i=0; cellId > cells.size()-1; i++) {
+            cells.add(i, new CellData(i));
+        }
+
+        return cells.get(cellId);
+    }
+
     private StringBuilder dispatchMessage(StringBuilder message) {
         int lfPosition = message.indexOf("\n");
         if (lfPosition != -1) {
-            String[] parts = message.toString().split("\\r?\\n", 1);
+            String[] parts = regex.split(message.toString());
 
             message = (parts.length > 1) ? new StringBuilder(parts[1]) : new StringBuilder(10);
 
@@ -96,12 +113,60 @@ public class CellDataSource implements ICellDataSource {
         }
     }
 
+    private static final int increment = 25;  // Magic constant from Firmware project
+    private static final float multiplier = 10000.0f;  // Magic constant from Firmware project
+
     private void parseMessage(String msg) {
-        if (msg.contains("set")) {
-            cells = new ArrayList<>(1);
-            CellData data = new CellData(1);
-            data.setVoltage(1.1f);
-            cells.add(data);
+        final int PART_CELL = 1;
+        final int PART_VOLTAGE = 2;
+        int state = 0;
+        int actualCell = -1;
+
+        StringBuilder sb = null;
+
+        for (int i=0; i<msg.length(); i++) {  // Drop LF character
+            char c = msg.charAt(i);
+
+            if (c == 'c') {
+                state = PART_CELL;
+                sb = new StringBuilder(2);
+                continue;
+            } else if (state == PART_CELL && c == 'v') {
+                if (sb != null) {
+                    try {
+                        actualCell = Integer.parseInt(sb.toString());
+                    } catch (NumberFormatException ignored) {
+                        actualCell = -1;
+                    }
+                }
+
+                state = PART_VOLTAGE;
+                sb = new StringBuilder(4);
+                continue;
+            }
+
+            if (sb != null) {
+                switch (state) {
+                    case PART_CELL:
+                        sb.append(c);
+                        break;
+                    case PART_VOLTAGE:
+                        sb.append(String.format("%02x", (int)c));   // Append as hex
+                        break;
+                }
+            }
+        }
+
+        if (sb != null && actualCell != -1) {
+            try {
+                Integer voltage_in = Integer.parseInt(sb.toString(), 16);
+                float voltage = (float) (voltage_in * increment) / multiplier;
+
+                ICellData cell = getCellWithAdd(actualCell);
+                if (!cell.equals(CellData.INVALID_CELL)) {
+                    cell.setVoltage(voltage);
+                }
+            } catch (NumberFormatException ignored) {}
         }
     }
 

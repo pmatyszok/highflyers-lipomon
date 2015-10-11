@@ -33,6 +33,7 @@ public class BtManager {
     private BluetoothDevice btDevice = null;
     private BluetoothSocket btSocket = null;
     public BtState state = BtState.NOT_INITIALIZED;
+    private InputStream inStream = null;
 
     public BtManager() throws BtNotSupportedException {
         if (!getAdapter())
@@ -84,6 +85,17 @@ public class BtManager {
     }
 
     public void close() {
+        closeConnection();
+    }
+
+    public void closeConnection() {
+        if (inStream != null) {
+            try {
+                inStream.close();
+            } catch (IOException ignored) {}
+
+            inStream = null;
+        }
         if (btSocket != null) {
             closeSocket();
             btSocket = null;
@@ -132,7 +144,8 @@ public class BtManager {
         assertReady();
         if (btSocket != null)
             try {
-                return btSocket.getInputStream();
+                inStream = btSocket.getInputStream();
+                return inStream;
             } catch (IOException e) {
                 return null;
             }
