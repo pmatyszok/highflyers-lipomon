@@ -1,6 +1,7 @@
 package com.highflyers.mwitas.lipomon;
 
 import android.app.AlertDialog;
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static ListView lvCells = null;
     private static Spinner spDevices = null;
+    private static Button btnConnect = null;
+
 
     private ActivityStateFlags activityStateFlags = new ActivityStateFlags();
 
@@ -59,6 +63,16 @@ public class MainActivity extends AppCompatActivity {
         initializeBt();
 
         setDevicesSpinner();
+        setConnectionButton();
+    }
+
+    private void setConnectionButton() {
+        btnConnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onDeviceSelected((DeviceData) spDevices.getSelectedItem());
+            }
+        });
     }
 
     @Override
@@ -138,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         spDevices.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,
                 deviceDataSource.getList()));
 
-        spDevices.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*spDevices.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 onDeviceSelected((DeviceData) spDevices.getSelectedItem());
@@ -148,37 +162,36 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
                 onDeviceSelected(DeviceData.NO_PAIRED_DEVICES);
             }
-        });
+        });*/
     }
 
     private void onDeviceSelected(DeviceData selectedItem) {
-        if (!activityStateFlags.justStarted()) {
-            btManager.closeConnection();
-            try {
-                if (!selectedItem.getAddress().equals(DeviceData.ZERO_ADDRESS)) {
-                    if (!btManager.connectToDevice(selectedItem.getAddress())) {
-                        Toast.makeText(this, R.string.txt_unable_to_connect_to_device, Toast.LENGTH_LONG).show();
-                        spDevices.performClick();
-                        return;
-                    }
-                }
-            } catch (BtInvalidStateException e) {
-                handleInvalidStateException(e);
-            } catch (IOException e) {
-                handleError(this, e.getMessage());
-            }
+        btManager.closeConnection();
 
-            setCellsListView();
-        } else {
-            activityStateFlags.resetJustStarted();
-            spDevices.performClick();
+        try {
+            if (!selectedItem.getAddress().equals(DeviceData.ZERO_ADDRESS)) {
+                if (!btManager.connectToDevice(selectedItem.getAddress())) {
+                    Toast.makeText(this, R.string.txt_unable_to_connect_to_device, Toast.LENGTH_LONG).show();
+                    spDevices.performClick();
+                    return;
+                }
+            } else{
+                Toast.makeText(this, R.string.txt_unable_to_connect_to_device, Toast.LENGTH_LONG).show();
+            }
+        } catch (BtInvalidStateException e) {
+            handleInvalidStateException(e);
+        } catch (IOException e) {
+            handleError(this, e.getMessage());
         }
+
+        setCellsListView();
     }
 
     private void getViews() {
         try {
             lvCells = (ListView) Helper.getView(this, R.id.lvCells, "lvCells");
             spDevices = (Spinner) Helper.getView(this, R.id.spDevices, "spDevices");
+            btnConnect = (Button) Helper.getView(this, R.id.btnConnect, "btnConnect");
         } catch (ViewNotFoundException e) {
             handleError(this, e.getMessage());
         }

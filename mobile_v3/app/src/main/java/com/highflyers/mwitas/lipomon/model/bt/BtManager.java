@@ -144,6 +144,9 @@ public class BtManager {
         assertReady();
         if (btSocket != null)
             try {
+                if (inStream != null)
+                    inStream.close();
+
                 inStream = btSocket.getInputStream();
                 return inStream;
             } catch (IOException e) {
